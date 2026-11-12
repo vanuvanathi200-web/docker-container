@@ -1,0 +1,160 @@
+# EXPERIMENT 8
+## CREATING AND EXECUTING YOUR FIRST CONTAINER USING DOCKER
+
+### AIM
+To create and execute the first container using Docker and to run multiple containers.
+
+### SOFTWARE REQUIREMENTS
+- Ubuntu Operating System
+- Docker Engine
+- Oracle VirtualBox
+
+### PROCEDURE
+
+**Step 1: Update Ubuntu**
+
+```bash
+sudo apt update
+```
+This command updates the Ubuntu package list.
+
+**Step 2: Install Docker**
+
+```bash
+sudo apt install docker.io -y
+```
+This command installs Docker in Ubuntu.
+
+**Step 3: Start Docker Service**
+
+```bash
+sudo systemctl enable --now docker
+```
+This command starts the Docker service and enables it at system startup.
+
+**Step 4: Verify Docker Installation**
+
+```bash
+sudo docker version
+```
+This command displays the installed Docker client and server versions.
+
+**Step 5: Run the First Container**
+
+```bash
+sudo docker run -it ubuntu top
+```
+This command creates and runs an Ubuntu container and displays the running processes using the `top` command.
+
+**Step 6: List Running Containers**
+
+Open another terminal and execute:
+
+```bash
+sudo docker ps
+```
+This command displays the currently running containers.
+
+**Step 7: Access the Container**
+
+```bash
+sudo docker exec -it CONTAINER_ID bash
+```
+This command opens an interactive Bash terminal inside the running container.
+
+**Step 8: Display Container Processes**
+
+```bash
+ps -ef
+```
+This command displays the processes running inside the container.
+
+To exit the container:
+
+```bash
+exit
+```
+
+**Step 9: Stop and Remove the First Container**
+
+Press `Ctrl + C` in the first terminal to stop the `top` command.
+
+```bash
+sudo docker ps -a
+```
+
+This command displays all containers, including stopped containers.
+
+```bash
+sudo docker rm CONTAINER_ID
+```
+
+This command removes the stopped container.
+
+**Step 10: Run Nginx Container**
+
+```bash
+sudo docker run -d -p 8082:80 --name nginx nginx
+```
+
+This command creates and runs an Nginx container in detached mode. Port 8082 of the host is mapped to port 80 of the container.
+
+**Step 11: Verify Nginx Container**
+
+```bash
+sudo docker ps
+```
+
+This command displays the running Nginx container.
+
+Open the browser and enter:
+
+```text
+http://localhost:8082
+```
+
+The browser displays the **Welcome to nginx!** page.
+
+**Step 12: Run MongoDB Container**
+
+```bash
+sudo docker run -d -p 8081:27017 --name mongo mongo:4.4
+```
+
+This command creates and runs a MongoDB container in detached mode.
+
+**Step 13: Verify Multiple Containers**
+
+```bash
+sudo docker ps
+```
+
+This command displays the running Nginx and MongoDB containers.
+
+**Step 14: Stop the Containers**
+
+```bash
+sudo docker stop nginx mongo
+```
+
+This command stops both containers.
+
+**Step 15: Remove the Containers**
+
+```bash
+sudo docker rm nginx mongo
+```
+
+This command removes the stopped containers.
+
+**Step 16: Clean Docker Resources**
+
+```bash
+sudo docker system prune
+```
+
+This command removes unused Docker resources and build cache. Confirm with `y` when prompted.
+
+### RESULT
+
+Thus, the first Docker container was successfully created and executed. Multiple containers such as Nginx and MongoDB were also created, executed, stopped and removed successfully.
